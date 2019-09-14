@@ -1,0 +1,22 @@
+html {
+  height: 100vh;
+  display: flex;
+}
+body {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background: #dedede;
+  font-family: sans-serif;
+}
+h1 {
+  text-align: center;
+}
+#sketch-container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
