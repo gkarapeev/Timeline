@@ -48,7 +48,7 @@ function draw() {
   rect(width / 2, height / 2, timelineLength, timelineHeight, 2.5);
 
   // Points
-  stroke(0, 250, 250);
+  stroke(250, 0, 250);
   strokeWeight(10);
 
   if (calcPointX(pointA))
