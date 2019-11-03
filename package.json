@@ -1,0 +1,42 @@
+{
+  "name": "timeline",
+  "version": "0.0.1",
+  "description": "A personalised, interactive timeline to add significant events to, and learn history in a visual way!",
+  "main": "sketch.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build": "webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gkarapeev/Timeline.git"
+  },
+  "keywords": [
+    "timeline",
+    "history",
+    "learning",
+    "interactive",
+    "personalized",
+    "custom",
+    "visual"
+  ],
+  "author": "Georgi Karapeev",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/gkarapeev/Timeline/issues"
+  },
+  "homepage": "https://github.com/gkarapeev/Timeline#readme",
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {}
+}
