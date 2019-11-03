@@ -11,6 +11,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
+        exclude: '/p5.js',
         use: [
           {
             loader: 'babel-loader',
