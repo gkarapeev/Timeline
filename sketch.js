@@ -1,7 +1,7 @@
 import generatePoints from './points';
 import './styles.scss';
 
-// // Canvas
+// Canvas
 // let screenHeight = 700;
 // let screenWidth = 1200;
 
