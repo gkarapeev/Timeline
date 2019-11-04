@@ -1,28 +1,29 @@
 import './styles.scss';
 import generatePoints from './points';
+import generatePoints_2 from './points_2';
 import * as p5 from './p5.js';
 
 
 let dragStartX;
 let dragStartY;
-let diffX = 0;
-let diffY = 0;
+let dragDistanceX = 0;
+let dragDistanceY = 0;
 
 // Canvas
 let screenHeight = 700;
 let screenWidth = 1200;
-let zoomFactor = 2;
+let zoomFactor = 1;
 let screen_offset_X = 0;
 let screen_offset_Y = 0;
 
 const worldToScreen = (x, y) => {
     screenX = (x - screen_offset_X) * zoomFactor;
-    screenY = (y + screen_offset_Y) * zoomFactor;
+    screenY = (y - screen_offset_Y) * zoomFactor;
     return [screenX, screenY]
 }
 
 // Points
-let points = generatePoints();
+let points = generatePoints_2();
 let pointSize = 30;
 
 // Sketch
@@ -38,15 +39,18 @@ let s = (sk) => {
         sk.ellipseMode(sk.CENTER);
 
         if (sk.mouseIsPressed) {
-            diffX = sk.mouseX - dragStartX;
-            diffY = sk.mouseY - dragStartY;
+            dragDistanceX = (sk.mouseX - dragStartX) / zoomFactor;
+            dragDistanceY = (sk.mouseY - dragStartY) / zoomFactor;
         }
 
         for (let point of points) {
+            let pointX = worldToScreen(point.x, point.y)[0];
+            let pointY = worldToScreen(point.x, point.y)[1];
+
             sk.fill(point.color);
-            sk.ellipse(worldToScreen(point.x, point.y)[0] + diffX, worldToScreen(point.x, point.y)[1] + diffY, pointSize * zoomFactor, pointSize * zoomFactor)
+
+            sk.ellipse(pointX + dragDistanceX * zoomFactor, pointY + dragDistanceY * zoomFactor, pointSize * zoomFactor, pointSize * zoomFactor)
         }
-        console.log(screen_offset_Y)
     }
 
     sk.mousePressed = () => {
@@ -55,10 +59,10 @@ let s = (sk) => {
     }
 
     sk.mouseReleased = () => {
-        screen_offset_X -= diffX;
-        diffX = 0;
-        screen_offset_Y += diffY;
-        diffY = 0;
+        screen_offset_X -= dragDistanceX;
+        dragDistanceX = 0;
+        screen_offset_Y -= dragDistanceY;
+        dragDistanceY = 0;
     }
 
     sk.mouseWheel = (event) => {
