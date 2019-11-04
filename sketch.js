@@ -1,34 +1,35 @@
-import generatePoints from './points';
 import './styles.scss';
-
-// Canvas
-// let screenHeight = 700;
-// let screenWidth = 1200;
-
-// // Timeline
-// let timelineLength = screenWidth - 100;
-// let timelineHeight = 3;
+import generatePoints from './points';
+import * as p5 from './p5.js';
 
 
-// function setup() {
-//   let mainCanvas = createCanvas(screenWidth, screenHeight);
-//   mainCanvas.parent("#sketch-container");
-//   rectMode(CENTER);
-// }
 
-// function draw() {
-//   background(50, 50, 50);
-//   fill(255);
-//   noStroke();
 
-//   // Points
-//   stroke(250, 0, 250);
-//   strokeWeight(10);
-// }
 
-// function mouseWheel(event) {
-//   let speed = event.delta;
 
-//   // block page scrolling
-//   return false;
-// }
+let s = (sk) => {
+    // Canvas
+    let screenHeight = 700;
+    let screenWidth = 1200;
+
+    sk.setup = () => {
+        sk.createCanvas(screenWidth, screenHeight).parent("#sketch-container");
+        sk.background(50);
+    }
+
+    sk.draw = () => {
+        sk.background(50, 50, 50);
+        sk.noFill();
+        sk.strokeWeight(2);
+        sk.stroke('white');
+        sk.rect(100, 100, 50, 50);
+    }
+
+    sk.mouseWheel = (event) => {
+        let speed = event.delta;
+        // block page scrolling
+        return false;
+    }
+}
+
+const drawing = new p5(s);
