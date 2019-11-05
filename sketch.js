@@ -13,8 +13,8 @@ let dragDistanceY = 0;
 let screenHeight = 700;
 let screenWidth = 1200;
 let zoomFactor = 1;
-let screen_offset_X = 0;
-let screen_offset_Y = 0;
+let screen_offset_X = -screenWidth / 2;
+let screen_offset_Y = -screenHeight / 2;
 
 const worldToScreen = (x, y) => {
     screenX = (x - screen_offset_X) * zoomFactor;
@@ -44,12 +44,18 @@ let s = (sk) => {
         }
 
         for (let point of points) {
-            let pointX = worldToScreen(point.x, point.y)[0];
-            let pointY = worldToScreen(point.x, point.y)[1];
+            let pointX_Screen = worldToScreen(point.x, point.y)[0];
+            let pointY_Screen = worldToScreen(point.x, point.y)[1];
+
+            let x_screen_offset = dragDistanceX * zoomFactor;
+            let y_screen_offset = dragDistanceY * zoomFactor;
+
+            let pointX_Dragged = pointX_Screen + x_screen_offset;
+            let pointY_Dragged = pointY_Screen + y_screen_offset;
 
             sk.fill(point.color);
 
-            sk.ellipse(pointX + dragDistanceX * zoomFactor, pointY + dragDistanceY * zoomFactor, pointSize * zoomFactor, pointSize * zoomFactor)
+            sk.ellipse(pointX_Dragged, pointY_Dragged, pointSize * zoomFactor, pointSize * zoomFactor)
         }
     }
 
@@ -67,7 +73,7 @@ let s = (sk) => {
 
     sk.mouseWheel = (event) => {
         let speed = event.delta;
-        zoomFactor += (speed * 0.01);
+        zoomFactor += (speed * 0.0002);
         console.log(zoomFactor)
         // block page scrolling
         return false;
