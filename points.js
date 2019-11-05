@@ -2,7 +2,7 @@ export default function points() {
     const pointY = 340;
     return [
         {
-            name: 'point_1',
+            name: 'Gesha',
             color: [31, 231, 238],
             id: 1,
             x: 0,
@@ -10,7 +10,7 @@ export default function points() {
             importance: 1
         },
         {
-            name: 'point_2',
+            name: 'Asi',
             color: [48, 238, 31],
             id: 2,
             x: 400,
@@ -18,7 +18,7 @@ export default function points() {
             importance: 2
         },
         {
-            name: 'point_3',
+            name: 'Nik',
             color: [224, 238, 31],
             id: 3,
             x: 600,

@@ -14,7 +14,7 @@ let screenHeight = 700;
 let screenWidth = 1200;
 let zoomFactor = 1;
 let offset_X = -screenWidth / 2;
-let offset_Y = -screenHeight / 2;
+let offset_Y = 0; //-screenHeight / 2;
 
 const worldToScreen = (x, y) => {
     let screenX = (x - offset_X) * zoomFactor;
@@ -29,28 +29,41 @@ const screenToWorld = (x, y) => {
 }
 
 // Points
-let points = generatePoints_2();
+let points = generatePoints();
 let pointSize = 30;
 
 // Sketch
 let s = (sk) => {
     sk.setup = () => {
         sk.createCanvas(screenWidth, screenHeight).parent("#sketch-container");
-        sk.frameRate(20);
+        sk.frameRate(60);
         sk.background(50);
         sk.ellipseMode(sk.CENTER);
+        sk.noStroke();
+        sk.textAlign(sk.CENTER);
+        sk.textSize(16);
     }
 
     sk.draw = () => {
-        sk.background(50, 50, 50);
-        let pointSize_scaled = pointSize * zoomFactor;
+
+        // Draw the timeline
+        sk.background(50);
+        sk.fill(90)
+        sk.rect(0, 380, 10000, 2);
+
+        // Draw the points
+        let pointSize_scaled = pointSize * 1;
 
         for (let point of points) {
-            sk.fill(point.color);
 
             let [ pointX_Screen, pointY_Screen ] = worldToScreen(point.x, point.y);
+            // Point
+            sk.fill(point.color);
+            sk.ellipse(pointX_Screen, 360, pointSize_scaled, pointSize_scaled);
 
-            sk.ellipse(pointX_Screen, pointY_Screen, pointSize_scaled, pointSize_scaled);
+            // Name
+            sk.fill("white")
+            sk.text("- " + point.name + " -", pointX_Screen, 400);
         }
     }
 
@@ -96,7 +109,6 @@ let s = (sk) => {
         offset_X += world_x_difference;
         offset_Y += world_y_difference;
 
-        console.log("zoom: " + zoomFactor.toFixed(3));
         // block page scrolling
         return false;
     }
