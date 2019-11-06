@@ -11,9 +11,9 @@ let dragDistanceY = 0;
 
 // Canvas
 let screenHeight = 700;
-let screenWidth = 1200;
-let zoomFactor = 1;
-let offset_X = -screenWidth / 2;
+let screenWidth = 1600;
+let zoomFactor = 12;
+let offset_X = 1952;
 let offset_Y = -screenHeight / 2;
 
 const worldToScreen = (x, y) => {
@@ -29,28 +29,51 @@ const screenToWorld = (x, y) => {
 }
 
 // Points
-let points = generatePoints_2();
+let points = generatePoints();
 let pointSize = 30;
 
 // Sketch
 let s = (sk) => {
     sk.setup = () => {
         sk.createCanvas(screenWidth, screenHeight).parent("#sketch-container");
-        sk.frameRate(20);
+        sk.frameRate(60);
         sk.background(50);
         sk.ellipseMode(sk.CENTER);
+        sk.noStroke();
+        sk.textAlign(sk.CENTER);
+        sk.textSize(16);
     }
 
     sk.draw = () => {
-        sk.background(50, 50, 50);
-        let pointSize_scaled = pointSize * zoomFactor;
+
+        // Draw the timeline
+        sk.noStroke();
+        sk.background(60);
+        sk.fill(170)
+        sk.rectMode(sk.CENTER);
+        sk.rect(screenWidth / 2, screenHeight / 2 + 20, screenWidth - 20, 1);
+
+        // Draw the points
+        let pointSize_scaled = sk.constrain(pointSize * zoomFactor * 0.3, 5, 20);
+
 
         for (let point of points) {
-            sk.fill(point.color);
 
             let [ pointX_Screen, pointY_Screen ] = worldToScreen(point.x, point.y);
+            // Point indicator
+            sk.strokeWeight(1);
+            sk.stroke(170);
+            sk.line(pointX_Screen, screenHeight / 2, pointX_Screen, screenHeight / 2 + 20)
 
-            sk.ellipse(pointX_Screen, pointY_Screen, pointSize_scaled, pointSize_scaled);
+            // Point
+            sk.strokeWeight(2);
+            sk.fill(point.color);
+            sk.ellipse(pointX_Screen, screenHeight / 2, pointSize_scaled, pointSize_scaled);
+
+            // Name
+            sk.noStroke();
+            sk.fill("white");
+            sk.text("- " + point.name + " -", pointX_Screen, screenHeight / 2 + 40 + 20 * point.id);
         }
     }
 
@@ -80,7 +103,8 @@ let s = (sk) => {
 
         // The actual zoom
         let speed = event.delta;
-        zoomFactor += (speed * 0.0004);
+        zoomFactor = sk.constrain(zoomFactor + speed * 0.0005, 0.01, 20);
+        console.log(offset_X)
 
         // Mouse screen coordinates after zoom
         let mouse_X_screen_after_zoom = sk.mouseX;
@@ -96,7 +120,6 @@ let s = (sk) => {
         offset_X += world_x_difference;
         offset_Y += world_y_difference;
 
-        console.log("zoom: " + zoomFactor.toFixed(3));
         // block page scrolling
         return false;
     }
