@@ -11,10 +11,10 @@ let dragDistanceY = 0;
 
 // Canvas
 let screenHeight = 700;
-let screenWidth = 1200;
-let zoomFactor = 1;
-let offset_X = -screenWidth / 2;
-let offset_Y = 0; //-screenHeight / 2;
+let screenWidth = 1600;
+let zoomFactor = 12;
+let offset_X = 1952;
+let offset_Y = -screenHeight / 2;
 
 const worldToScreen = (x, y) => {
     let screenX = (x - offset_X) * zoomFactor;
@@ -47,23 +47,33 @@ let s = (sk) => {
     sk.draw = () => {
 
         // Draw the timeline
-        sk.background(50);
-        sk.fill(90)
-        sk.rect(0, 380, 10000, 2);
+        sk.noStroke();
+        sk.background(60);
+        sk.fill(170)
+        sk.rectMode(sk.CENTER);
+        sk.rect(screenWidth / 2, screenHeight / 2 + 20, screenWidth - 20, 1);
 
         // Draw the points
-        let pointSize_scaled = pointSize * 1;
+        let pointSize_scaled = sk.constrain(pointSize * zoomFactor * 0.3, 5, 20);
+
 
         for (let point of points) {
 
             let [ pointX_Screen, pointY_Screen ] = worldToScreen(point.x, point.y);
+            // Point indicator
+            sk.strokeWeight(1);
+            sk.stroke(170);
+            sk.line(pointX_Screen, screenHeight / 2, pointX_Screen, screenHeight / 2 + 20)
+
             // Point
+            sk.strokeWeight(2);
             sk.fill(point.color);
-            sk.ellipse(pointX_Screen, 360, pointSize_scaled, pointSize_scaled);
+            sk.ellipse(pointX_Screen, screenHeight / 2, pointSize_scaled, pointSize_scaled);
 
             // Name
-            sk.fill("white")
-            sk.text("- " + point.name + " -", pointX_Screen, 400);
+            sk.noStroke();
+            sk.fill("white");
+            sk.text("- " + point.name + " -", pointX_Screen, screenHeight / 2 + 40 + 20 * point.id);
         }
     }
 
@@ -93,7 +103,8 @@ let s = (sk) => {
 
         // The actual zoom
         let speed = event.delta;
-        zoomFactor += (speed * 0.0004);
+        zoomFactor = sk.constrain(zoomFactor + speed * 0.0005, 0.01, 20);
+        console.log(offset_X)
 
         // Mouse screen coordinates after zoom
         let mouse_X_screen_after_zoom = sk.mouseX;
