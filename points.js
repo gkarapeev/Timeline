@@ -44,18 +44,26 @@ export default function points() {
         {
             name: 'Columbus 1st Voyage',
             color: [178, 163, 245],
-            id: 5,
+            id: 6,
             x: 1492,
             y: pointY,
-            importance: 5
+            importance: 6
         },
         {
             name: 'Pyramids',
             color: [190, 90, 30],
-            id: 5,
+            id: 7,
             x: -2600,
             y: pointY,
-            importance: 5
+            importance: 7
+        },
+        {
+            name: 'WW1',
+            color: [224, 160, 31],
+            id: 8,
+            x: 1914,
+            y: pointY,
+            importance: 8
         }
     ]
 };
