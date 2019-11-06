@@ -41,7 +41,6 @@ let s = (sk) => {
         sk.ellipseMode(sk.CENTER);
         sk.noStroke();
         sk.textAlign(sk.CENTER);
-        sk.textSize(16);
     }
 
     sk.draw = () => {
@@ -73,7 +72,11 @@ let s = (sk) => {
             // Name
             sk.noStroke();
             sk.fill("white");
-            sk.text("- " + point.name + " -", pointX_Screen, screenHeight / 2 + 40 + 20 * point.id);
+            sk.textSize(16);
+            sk.text("- " + point.x + " -", pointX_Screen, screenHeight / 2 + 20 + 40 * point.id);
+            sk.fill(200)
+            sk.textSize(12);
+            sk.text(point.name, pointX_Screen, screenHeight / 2 + 40 + 40 * point.id);
         }
     }
 
