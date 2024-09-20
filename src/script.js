@@ -1,5 +1,6 @@
 import generatePoints from './data/points.js';
 import generatePoints_2 from './data/points_2.js';
+import { worldToScreen, screenToWorld } from './utils.js';
 
 let dragStartX;
 let dragStartY;
@@ -14,21 +15,9 @@ let zoomFactor = 12;
 let offset_X = lockHorizontal ? 1952 : 0;
 let offset_Y = -screenHeight / 2;
 
-const worldToScreen = (x, y) => {
-    let screenX = (x - offset_X) * zoomFactor;
-    let screenY = (y - offset_Y) * zoomFactor;
-    return [screenX, screenY]
-}
-
-const screenToWorld = (x, y) => {
-    let worldX = (x / zoomFactor) + offset_X;
-    let worldY = (y / zoomFactor) + offset_Y;
-    return [worldX, worldY]
-}
-
 // Points
 let points = generatePoints_2();
-let pointSize = 30;
+const pointSize = 30;
 
 // Sketch
 let s = (sk) => {
@@ -56,7 +45,7 @@ let s = (sk) => {
 
         for (let point of points) {
 
-            let [ pointX_Screen, pointY_Screen ] = worldToScreen(point.x, point.y);
+            let [ pointX_Screen, pointY_Screen ] = worldToScreen(point.x, point.y, offset_X, offset_Y, zoomFactor);
             // Point indicator
             sk.strokeWeight(1);
             sk.stroke(170);
@@ -100,7 +89,7 @@ let s = (sk) => {
         let mouse_Y_screen_before_zoom = sk.mouseY;
 
         // Mouse world coordinates before zoom
-        let [ mouse_X_world_before_zoom, mouse_Y_world_before_zoom ] = screenToWorld(mouse_X_screen_before_zoom, mouse_Y_screen_before_zoom);
+        let [ mouse_X_world_before_zoom, mouse_Y_world_before_zoom ] = screenToWorld(mouse_X_screen_before_zoom, mouse_Y_screen_before_zoom, offset_X, offset_Y, zoomFactor);
 
         // The actual zoom
         let speed = event.delta;
@@ -112,7 +101,7 @@ let s = (sk) => {
         let mouse_Y_screen_after_zoom = sk.mouseY;
 
         // Mouse world coordinates after zoom
-        let [ mouse_X_world_after_zoom, mouse_Y_world_after_zoom ] = screenToWorld(mouse_X_screen_after_zoom, mouse_Y_screen_after_zoom);
+        let [ mouse_X_world_after_zoom, mouse_Y_world_after_zoom ] = screenToWorld(mouse_X_screen_after_zoom, mouse_Y_screen_after_zoom, offset_X, offset_Y, zoomFactor);
 
         // Screen difference before vs. after zoom
         let world_x_difference = mouse_X_world_before_zoom - mouse_X_world_after_zoom;
