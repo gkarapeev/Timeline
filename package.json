@@ -4,7 +4,7 @@
   "description": "A personalised, interactive timeline to add significant events to, and learn history in a visual way!",
   "main": "sketch.js",
   "scripts": {
-    "start": "",
+    "start": "http-server",
     "build": ""
   },
   "repository": {
@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/gkarapeev/Timeline#readme",
   "devDependencies": {
+    "http-server": "^14.1.1"
   },
   "dependencies": {}
 }
