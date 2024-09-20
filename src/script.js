@@ -7,10 +7,11 @@ let dragDistanceX = 0;
 let dragDistanceY = 0;
 
 // Canvas
+const lockHorizontal = false;
 let screenHeight = 700;
 let screenWidth = 1600;
 let zoomFactor = 12;
-let offset_X = 1952;
+let offset_X = lockHorizontal ? 1952 : 0;
 let offset_Y = -screenHeight / 2;
 
 const worldToScreen = (x, y) => {
@@ -26,7 +27,7 @@ const screenToWorld = (x, y) => {
 }
 
 // Points
-let points = generatePoints();
+let points = generatePoints_2();
 let pointSize = 30;
 
 // Sketch
@@ -64,7 +65,7 @@ let s = (sk) => {
             // Point
             sk.strokeWeight(2);
             sk.fill(point.color);
-            sk.ellipse(pointX_Screen, screenHeight / 2, pointSize_scaled, pointSize_scaled);
+            sk.ellipse(pointX_Screen, lockHorizontal ? screenHeight / 2 : pointY_Screen, pointSize_scaled, pointSize_scaled);
 
             // Name
             sk.noStroke();
