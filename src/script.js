@@ -1,7 +1,7 @@
 import './styles.scss';
-import generatePoints from './points';
-import generatePoints_2 from './points_2';
-import * as p5 from './p5.js';
+import generatePoints from './data/points.js';
+import generatePoints_2 from './data/points_2.js';
+import * as p5 from './p5/p5.js';
 
 
 let dragStartX;
