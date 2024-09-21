@@ -2,7 +2,6 @@
   "name": "timeline",
   "version": "0.0.1",
   "description": "A personalised, interactive timeline to add significant events to, and learn history in a visual way!",
-  "main": "sketch.js",
   "scripts": {
     "start": "http-server",
     "build": ""
