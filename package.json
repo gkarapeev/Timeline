@@ -1,14 +1,12 @@
 {
   "name": "timeline",
-  "version": "0.0.1",
+  "author": "Georgi Karapeev",
   "scripts": {
     "start": "http-server",
     "build": ""
   },
-  "author": "Georgi Karapeev",
-  "license": "AGPL-3.0-or-later",
+  "dependencies": {},
   "devDependencies": {
     "http-server": "^14.1.1"
-  },
-  "dependencies": {}
+  }
 }
