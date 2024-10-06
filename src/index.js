@@ -1,3 +1,4 @@
+import p5 from 'p5';
 import generatePoints from './data/points.js';
 import generatePoints_2 from './data/points_2.js';
 import { worldToScreen, screenToWorld } from './utils.js';
