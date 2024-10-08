@@ -38,5 +38,4 @@ function gridPoints() {
 export const config = {
 	points: gridPoints(),
 	initial_x: 0,
-    allowVerticalPan: true
 };
