@@ -70,6 +70,6 @@ function points() {
 
 export const config = {
 	points: points(),
-	horizontalCenter: 1952,
+	initial_x: 1952,
     allowVerticalPan: false
 };
