@@ -62,8 +62,9 @@ class Space {
 			this.#sketch.mouseY
 		);
 
+		const zoomChange = Math.exp(event.delta * this.#ZOOM_COEFFICIENT);
 		this.#zoomFactor = this.#sketch.constrain(
-			this.#zoomFactor + event.delta * this.#ZOOM_COEFFICIENT,
+			this.#zoomFactor * zoomChange,
 			this.#MIN_ZOOM,
 			this.#MAX_ZOOM
 		);
