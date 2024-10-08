@@ -10,9 +10,12 @@
     "p5": "1.11.0"
   },
   "devDependencies": {
-    "webpack": "^5.95.0",
-    "webpack-cli": "^5.1.4",
+    "@types/p5": "^1.7.6",
+    "concurrently": "^9.0.1",
     "lite-server": "^2.6.1",
-    "concurrently": "^9.0.1"
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.6.2",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4"
   }
 }

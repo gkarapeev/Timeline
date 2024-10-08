@@ -1,3 +1,6 @@
+import p5 from "p5";
+import { Space } from "../rendering/space";
+
 const grid = () => {
 	const size = 4000;
 	let horizontal = [];
@@ -21,7 +24,7 @@ const grid = () => {
 	return [...horizontal, ...vertical];
 };
 
-export const drawGrid = (space, sk) => {
+export const drawGrid = (space: Space, sk: p5) => {
 	sk.strokeWeight(1);
 	sk.stroke(85);
 

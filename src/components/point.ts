@@ -1,4 +1,7 @@
-export const drawPoint = (point, sk, space, screenHeight) => {
+import p5 from "p5";
+import { Space } from "../rendering/space";
+
+export const drawPoint = (point: Point, sk: p5, space: Space, screenHeight: number) => {
 	const POINT_SIZE = 30;
 
 	const [x, y] = space.toScreen(point.x, point.y);

@@ -1,19 +1,19 @@
 import p5 from "p5";
 
-import { Space } from "./rendering/space.js";
-import { Draggable } from "./rendering/draggable.js";
+import { Space } from "./rendering/space";
+import { Draggable } from "./rendering/draggable";
 
-import { drawPoint } from "./components/point.js";
-import { drawGrid } from "./components/grid.js";
-import { drawTimeline } from "./components/timeline.js";
+import { drawPoint } from "./components/point";
+import { drawGrid } from "./components/grid";
+import { drawTimeline } from "./components/timeline";
 
-// import { config } from "./data/line_points.js";
-import { config } from "./data/grid_points.js";
+import { config } from "./data/line_points";
+// import { config } from "./data/grid_points";
 
 let screenHeight = 700;
 let screenWidth = 1600;
 
-let s = (sk) => {
+let s = (sk: p5) => {
 	const draggable = new Draggable(sk);
 	const space = new Space(config.initial_x, -screenHeight / 2);
 
@@ -35,7 +35,7 @@ let s = (sk) => {
 
 	sk.mousePressed = () => draggable.mousePressed();
 	sk.mouseDragged = () => draggable.mouseDragged(space);
-	sk.mouseWheel = (event) => {
+	sk.mouseWheel = (event: any) => {
 		space.zoom(sk, event.delta);
 		return false;
 	};

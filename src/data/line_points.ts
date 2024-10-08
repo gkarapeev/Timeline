@@ -1,6 +1,7 @@
 function points() {
 	const pointY = 350;
-	return [
+
+	const points: Point[] = [
 		{
 			name: "First Bulgarian Kingdom",
 			color: [31, 231, 238],
@@ -66,6 +67,8 @@ function points() {
 			importance: 8,
 		},
 	];
+
+	return points;
 }
 
 export const config = {
