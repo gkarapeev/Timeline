@@ -5,7 +5,7 @@ const grid = () => {
 	const size = 4000;
 	let horizontal = [];
 
-	for (let i = -size; i <= size; i += 100) {
+	for (let i = -size; i <= size; i += 50) {
 		horizontal.push({
 			from: [i, -size],
 			to: [i, size],
@@ -14,7 +14,7 @@ const grid = () => {
 
 	let vertical = [];
 
-	for (let i = -size; i <= size; i += 100) {
+	for (let i = -size; i <= size; i += 50) {
 		vertical.push({
 			from: [-size, i],
 			to: [size, i],

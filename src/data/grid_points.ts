@@ -1,10 +1,11 @@
 function gridPoints() {
-	let points = [];
+	let points: Point[] = [];
 	let _idCounter = 1;
 
 	for (let i = -1250; i <= 1250; i += 100) {
 		for (let j = -1250; j <= 1250; j += 100) {
-			let color;
+			let color: [number, number, number];
+
 			if (i < 0) {
 				if (j < 0) {
 					color = [31, 231, 238];
@@ -35,7 +36,8 @@ function gridPoints() {
 	return points;
 }
 
-export const config = {
+export const config: SketchConfig = {
 	points: gridPoints(),
-	initial_x: 0,
+	initial_world_x_at_screen_center: 0,
+	initial_world_y_at_screen_center: 0
 };

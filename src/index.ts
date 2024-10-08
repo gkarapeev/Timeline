@@ -10,12 +10,18 @@ import { drawTimeline } from "./components/timeline";
 import { config } from "./data/line_points";
 // import { config } from "./data/grid_points";
 
-let screenHeight = 700;
-let screenWidth = 1600;
+let screenHeight = 1000;
+let screenWidth = 1000;
 
 let s = (sk: p5) => {
 	const draggable = new Draggable(sk);
-	const space = new Space(config.initial_x, -screenHeight / 2);
+	const space = new Space(
+		config.initial_world_x_at_screen_center,
+		config.initial_world_y_at_screen_center,
+		screenWidth,
+		screenHeight,
+		config.allow_pan_y
+	);
 
 	sk.setup = () => {
 		sk.createCanvas(screenWidth, screenHeight).parent("#sketch-container");
@@ -26,7 +32,7 @@ let s = (sk: p5) => {
 		sk.background([41, 45, 94]);
 
 		drawGrid(space, sk);
-		drawTimeline(sk, screenWidth, screenHeight);
+		drawTimeline(sk, space);
 
 		for (let point of config.points) {
 			drawPoint(point, sk, space, screenHeight);

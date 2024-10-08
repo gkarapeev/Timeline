@@ -1,14 +1,15 @@
+import p5 from "p5";
 import { Space } from "./space";
 
 export class Draggable {
-	public dragStart_x = null;
-	public dragStart_y = null;
+	public dragStart_x: number = null as any;
+	public dragStart_y: number = null as any;
 	public dragDistanceX = 0;
 	public dragDistanceY = 0;
 
-	private sketch;
+	private sketch: p5;
 
-	constructor(sk: any) {
+	constructor(sk: p5) {
 		this.sketch = sk;
 	}
 
