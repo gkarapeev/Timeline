@@ -1,4 +1,4 @@
-export default function points() {
+function points() {
     const pointY = 0;
     return [
         {
@@ -66,4 +66,10 @@ export default function points() {
             importance: 8
         }
     ]
+};
+
+export const config = {
+	points: points(),
+	horizontalCenter: 1952,
+    allowVerticalPan: false
 };

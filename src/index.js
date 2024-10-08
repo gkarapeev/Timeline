@@ -1,6 +1,6 @@
 import p5 from 'p5';
-import generatePoints from './data/points.js';
-import generatePoints_2 from './data/points_2.js';
+// import { config } from './data/line_points.js';
+import { config } from './data/grid_points.js';
 import { worldToScreen, screenToWorld } from './utils.js';
 
 let dragStartX;
@@ -9,15 +9,14 @@ let dragDistanceX = 0;
 let dragDistanceY = 0;
 
 // Canvas
-const lockHorizontal = false;
 let screenHeight = 700;
 let screenWidth = 1600;
 let zoomFactor = 12;
-let offset_X = lockHorizontal ? 1952 : 0;
+let offset_X = config.horizontalCenter;
 let offset_Y = -screenHeight / 2;
 
 // Points
-let points = generatePoints_2();
+let points = config.points;
 const pointSize = 30;
 
 // Sketch
@@ -55,7 +54,7 @@ let s = (sk) => {
             // Point
             sk.strokeWeight(2);
             sk.fill(point.color);
-            sk.ellipse(pointX_Screen, lockHorizontal ? screenHeight / 2 : pointY_Screen, pointSize_scaled, pointSize_scaled);
+            sk.ellipse(pointX_Screen, config.allowVerticalPan ? pointY_Screen : screenHeight / 2, pointSize_scaled, pointSize_scaled);
 
             // Name
             sk.noStroke();
