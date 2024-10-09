@@ -63,11 +63,11 @@ export class Space {
 		this.screen_offset_y += delta_y_world;
 	}
 
-	public moveScreen(delta_x: number, delta_y: number) {
-		this.screen_offset_x -= delta_x / this.zoomFactor;
+	public moveScreen(delta_x_screen: number, delta_y_screen: number) {
+		this.screen_offset_x -= delta_x_screen / this.zoomFactor;
 
 		if (this.allow_pan_y) {
-			this.screen_offset_y -= delta_y / this.zoomFactor;
+			this.screen_offset_y -= delta_y_screen / this.zoomFactor;
 		}
 	}
 
