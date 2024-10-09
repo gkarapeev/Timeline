@@ -42,7 +42,7 @@ export class Space {
 	}
 
 	public zoom(sketch: p5, delta: number) {
-		const [initial_x, initial_y] = this.toWorld(
+		const [initial_x_world, initial_y_world] = this.toWorld(
 			sketch.mouseX,
 			sketch.mouseY
 		);
@@ -54,10 +54,10 @@ export class Space {
 			this.MAX_ZOOM
 		);
 
-		const [final_x, final_y] = this.toWorld(sketch.mouseX, sketch.mouseY);
+		const [final_x_world, final_y_world] = this.toWorld(sketch.mouseX, sketch.mouseY);
 
-		const delta_x_world = initial_x - final_x;
-		const delta_y_world = initial_y - final_y;
+		const delta_x_world = initial_x_world - final_x_world;
+		const delta_y_world = initial_y_world - final_y_world;
 
 		this.screen_offset_x += delta_x_world;
 		this.screen_offset_y += delta_y_world;
