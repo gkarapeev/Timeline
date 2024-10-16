@@ -1,7 +1,7 @@
 import p5 from "p5";
 
 export class Space {
-	private screen_offset_x!: number;
+	private screen_offset_x!: number; // is this really screen, or is it actually world?
 	private screen_offset_y!: number;
 
 	private allow_pan_y!: boolean;
