@@ -1,21 +1,44 @@
 {
-  "name": "timeline",
-  "author": "Georgi Karapeev",
-  "license": "UNLICENSED",
+  "name": "timeline-app",
+  "packageManager": "yarn@1.22.22",
+  "version": "0.0.0",
   "scripts": {
-    "start": "concurrently \"yarn wp\" \"lite-server\"",
-    "wp": "yarn webpack --watch"
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
   },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "private": true,
   "dependencies": {
-    "p5": "1.11.0"
+    "@angular/common": "^20.3.0",
+    "@angular/compiler": "^20.3.0",
+    "@angular/core": "^20.3.0",
+    "@angular/forms": "^20.3.0",
+    "@angular/platform-browser": "^20.3.0",
+    "@angular/router": "^20.3.0",
+    "p5": "^2.0.5",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@angular/build": "^20.3.5",
+    "@angular/cli": "^20.3.5",
+    "@angular/compiler-cli": "^20.3.0",
+    "@types/jasmine": "~5.1.0",
     "@types/p5": "^1.7.6",
-    "concurrently": "^9.0.1",
-    "lite-server": "^2.6.1",
-    "ts-loader": "^9.5.1",
-    "typescript": "^5.6.2",
-    "webpack": "^5.95.0",
-    "webpack-cli": "^5.1.4"
+    "typescript": "~5.9.2"
   }
 }
